@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Portfolio de trabajos seleccionados."
+  >
+
+  <title>Portfolio</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- =========================================
+       HEADER
+  ========================================== -->
+
+  <header class="portfolio-header">
+
+    <div class="portfolio-header__content">
+
+      <p class="portfolio-header__label">
+        PORTFOLIO
+      </p>
+
+      <h1 class="portfolio-header__title">
+        Trabajos seleccionados
+      </h1>
+
+      <p class="portfolio-header__description">
+        Una selección de proyectos y piezas visuales.
+      </p>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================================
+       GALERÍA
+       
+       Las imágenes serán generadas desde app.js.
+       No necesitamos escribirlas manualmente acá.
+  ========================================== -->
+
+  <main class="portfolio-main">
+
+    <section
+      id="portfolioGallery"
+      class="portfolio-gallery"
+      aria-label="Galería de trabajos"
+    >
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       LIGHTBOX / VISOR
+       
+       hidden = permanece oculto hasta seleccionar
+       una imagen de la galería.
+  ========================================== -->
+
+  <div
+    id="portfolioLightbox"
+    class="lightbox"
+    aria-hidden="true"
+    hidden
+  >
+
+    <!-- Fondo oscuro -->
+    <div
+      class="lightbox__overlay"
+      data-lightbox-close
+    ></div>
+
+
+    <!-- Contenido -->
+    <div
+      class="lightbox__content"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Detalle del trabajo"
+    >
+
+      <!-- Cerrar -->
+      <button
+        class="lightbox__close"
+        type="button"
+        aria-label="Cerrar"
+        data-lightbox-close
+      >
+        &times;
+      </button>
+
+
+      <!-- Imagen + navegación -->
+      <div class="lightbox__viewer">
+
+        <button
+          id="lightboxPrevious"
+          class="lightbox__navigation lightbox__navigation--previous"
+          type="button"
+          aria-label="Trabajo anterior"
+        >
+          &#8249;
+        </button>
+
+
+        <img
+          id="lightboxImage"
+          class="lightbox__image"
+          src=""
+          alt=""
+        >
+
+
+        <button
+          id="lightboxNext"
+          class="lightbox__navigation lightbox__navigation--next"
+          type="button"
+          aria-label="Trabajo siguiente"
+        >
+          &#8250;
+        </button>
+
+      </div>
+
+
+      <!-- Información del trabajo -->
+      <div class="lightbox__information">
+
+        <p
+          id="lightboxDescription"
+          class="lightbox__description"
+        >
+        </p>
+
+        <p
+          id="lightboxCounter"
+          class="lightbox__counter"
+          aria-live="polite"
+        >
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,694 @@
+/* =========================================================
+   PORTFOLIO — styles.css
+   v0.1
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   RESET / BASE
+--------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  background: #ffffff;
+  color: #161616;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+
+/* ---------------------------------------------------------
+   VARIABLES
+--------------------------------------------------------- */
+
+:root {
+  --page-width: 1100px;
+
+  --page-padding: 20px;
+
+  --gallery-gap: 10px;
+
+  --text-primary: #161616;
+  --text-secondary: #777777;
+
+  --lightbox-background: rgba(10, 10, 10, 0.96);
+  --lightbox-text: #ffffff;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.portfolio-header {
+  width: 100%;
+}
+
+.portfolio-header__content {
+  width: min(
+    var(--page-width),
+    calc(100% - (var(--page-padding) * 2))
+  );
+
+  margin: 0 auto;
+
+  padding-top: 52px;
+  padding-bottom: 32px;
+}
+
+
+.portfolio-header__label {
+  margin: 0 0 12px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+
+.portfolio-header__title {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size: clamp(
+    36px,
+    7vw,
+    72px
+  );
+
+  font-weight: 600;
+
+  line-height: 0.96;
+
+  letter-spacing: -0.045em;
+}
+
+
+.portfolio-header__description {
+  max-width: 520px;
+
+  margin:
+    20px
+    0
+    0;
+
+  color: var(--text-secondary);
+
+  font-size: 15px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.portfolio-main {
+  width: 100%;
+}
+
+
+/* =========================================================
+   GALERÍA / COLLAGE
+========================================================= */
+
+.portfolio-gallery {
+  width: min(
+    var(--page-width),
+    calc(100% - (var(--page-padding) * 2))
+  );
+
+  margin: 0 auto;
+
+  padding-bottom: 70px;
+
+  /*
+   * CSS Columns nos permite conseguir el efecto
+   * masonry sin librerías externas.
+   */
+
+  column-count: 2;
+
+  column-gap: var(--gallery-gap);
+}
+
+
+/* ---------------------------------------------------------
+   TRABAJO
+--------------------------------------------------------- */
+
+/*
+ * Estos elementos serán creados automáticamente
+ * desde app.js.
+ */
+
+.portfolio-work {
+  display: block;
+
+  width: 100%;
+
+  margin:
+    0
+    0
+    var(--gallery-gap);
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: zoom-in;
+
+  break-inside: avoid;
+
+  -webkit-column-break-inside: avoid;
+}
+
+
+.portfolio-work__image {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  background: #eeeeee;
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+--------------------------------------------------------- */
+
+@media (hover: hover) {
+
+  .portfolio-work:hover .portfolio-work__image {
+    opacity: 0.9;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   FOCUS
+--------------------------------------------------------- */
+
+.portfolio-work:focus-visible {
+  outline:
+    2px
+    solid
+    var(--text-primary);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox[hidden] {
+  display: none;
+}
+
+
+.lightbox {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 24px;
+}
+
+
+/* ---------------------------------------------------------
+   OVERLAY
+--------------------------------------------------------- */
+
+.lightbox__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    var(--lightbox-background);
+}
+
+
+/* ---------------------------------------------------------
+   CONTENIDO
+--------------------------------------------------------- */
+
+.lightbox__content {
+  position: relative;
+
+  z-index: 1;
+
+  width: min(
+    940px,
+    100%
+  );
+
+  max-height:
+    calc(100dvh - 48px);
+
+  overflow-y: auto;
+
+  color:
+    var(--lightbox-text);
+
+  scrollbar-width: thin;
+}
+
+
+/* =========================================================
+   CERRAR
+========================================================= */
+
+.lightbox__close {
+  position: fixed;
+
+  top: 18px;
+  right: 20px;
+
+  z-index: 10;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.45);
+
+  color: #ffffff;
+
+  font-size: 30px;
+  font-weight: 300;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+
+.lightbox__close:hover {
+  background:
+    rgba(255, 255, 255, 0.12);
+}
+
+
+.lightbox__close:focus-visible {
+  outline:
+    2px
+    solid
+    #ffffff;
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   VISOR
+========================================================= */
+
+.lightbox__viewer {
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 100px;
+}
+
+
+/* ---------------------------------------------------------
+   IMAGEN
+--------------------------------------------------------- */
+
+.lightbox__image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+
+  /*
+   * Dejamos espacio vertical para la descripción
+   * debajo de la imagen.
+   */
+
+  max-height:
+    calc(100dvh - 210px);
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+.lightbox__navigation {
+  position: fixed;
+
+  top: 50%;
+
+  z-index: 10;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 50px;
+  height: 64px;
+
+  padding: 0;
+
+  border: 0;
+
+  background:
+    rgba(0, 0, 0, 0.42);
+
+  color: #ffffff;
+
+  font-size: 42px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transform:
+    translateY(-50%);
+}
+
+
+.lightbox__navigation:hover {
+  background:
+    rgba(255, 255, 255, 0.12);
+}
+
+
+.lightbox__navigation:focus-visible {
+  outline:
+    2px
+    solid
+    #ffffff;
+
+  outline-offset: 2px;
+}
+
+
+.lightbox__navigation--previous {
+  left: 16px;
+}
+
+
+.lightbox__navigation--next {
+  right: 16px;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.lightbox__information {
+  width: min(
+    720px,
+    100%
+  );
+
+  margin:
+    20px
+    auto
+    0;
+
+  padding:
+    0
+    4px
+    12px;
+}
+
+
+.lightbox__description {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      15px,
+      2vw,
+      17px
+    );
+
+  line-height: 1.6;
+}
+
+
+.lightbox__counter {
+  margin:
+    14px
+    0
+    0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.55
+    );
+
+  font-size: 12px;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  :root {
+    --page-padding: 10px;
+
+    --gallery-gap: 6px;
+  }
+
+
+  /* HEADER */
+
+  .portfolio-header__content {
+    padding-top: 34px;
+
+    padding-bottom: 24px;
+  }
+
+
+  .portfolio-header__label {
+    margin-bottom: 10px;
+  }
+
+
+  .portfolio-header__title {
+    font-size:
+      clamp(
+        34px,
+        12vw,
+        52px
+      );
+  }
+
+
+  .portfolio-header__description {
+    margin-top: 14px;
+
+    font-size: 14px;
+  }
+
+
+  /* GALERÍA */
+
+  .portfolio-gallery {
+    /*
+     * Mantenemos las dos columnas también
+     * en teléfonos.
+     */
+
+    column-count: 2;
+
+    padding-bottom: 40px;
+  }
+
+
+  /* LIGHTBOX */
+
+  .lightbox {
+    padding:
+      12px
+      10px;
+  }
+
+
+  .lightbox__content {
+    width: 100%;
+
+    max-height:
+      calc(100dvh - 24px);
+  }
+
+
+  .lightbox__image {
+    max-height:
+      calc(100dvh - 190px);
+  }
+
+
+  /* CERRAR */
+
+  .lightbox__close {
+    top: 12px;
+
+    right: 12px;
+
+    width: 40px;
+
+    height: 40px;
+
+    font-size: 27px;
+  }
+
+
+  /*
+   * En móvil movemos las flechas hacia abajo
+   * para no tapar la imagen.
+   */
+
+  .lightbox__navigation {
+    top: auto;
+
+    bottom: 18px;
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 50%;
+
+    font-size: 32px;
+
+    transform: none;
+  }
+
+
+  .lightbox__navigation--previous {
+    left: 14px;
+  }
+
+
+  .lightbox__navigation--next {
+    right: 14px;
+  }
+
+
+  /* INFORMACIÓN */
+
+  .lightbox__information {
+    margin-top: 16px;
+
+    padding:
+      0
+      54px
+      10px;
+  }
+
+
+  .lightbox__description {
+    font-size: 14px;
+
+    line-height: 1.55;
+  }
+
+
+  .lightbox__counter {
+    margin-top: 10px;
+
+    font-size: 11px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+
+  .portfolio-work__image {
+    transition: none;
+  }
+
+}
